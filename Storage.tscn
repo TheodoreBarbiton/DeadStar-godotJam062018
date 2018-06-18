@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://storage.png" type="Texture" id=1]
+[ext_resource path="res://Storage.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 7, 7 )
+
+[node name="Storage" type="Sprite"]
+
+texture = ExtResource( 1 )
+offset = Vector2( 8, 8 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 16, 16 )
+script = ExtResource( 2 )
+_sections_unfolded = [ "Region" ]
+
+[node name="Area2D" type="Area2D" parent="." index="0"]
+
+position = Vector2( 8, 8 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+
+
